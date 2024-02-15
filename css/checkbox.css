@@ -1,0 +1,82 @@
+ /* Estilo básico para el checkbox */
+.checkbox-input {
+  /* Ocultar el checkbox nativo */
+  display: none;
+}
+
+/* Estilo del contenedor del checkbox */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 25px; /* Espacio para la apariencia del checkbox */
+  top: -1em;
+}
+
+/* Estilo del indicador del checkbox */
+.checkbox-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #c9c4c4; /* Color de fondo del checkbox */
+  border: 1px solid #ccc; /* Borde del checkbox */
+  border-radius: 3px; /* Bordes redondeados */
+}
+
+/* Estilo del indicador del checkbox cuando está marcado */
+.checkbox-input:checked + .checkbox-indicator {
+  background-color: #007bff; /* Color de fondo del checkbox marcado */
+  border-color: #007bff; /* Color del borde del checkbox marcado */
+}
+
+/* Estilo del icono de verificación */
+.checkbox-checkmark {
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  height: 10px;
+  width: 5px;
+  border-right: 2px solid #fff; /* Línea izquierda del icono */
+  border-bottom: 2px solid #fff; /* Línea inferior del icono */
+  transform: rotate(45deg); /* Rotar el icono */
+  opacity: 0; /* Ocultar el icono por defecto */
+}
+
+/* Mostrar el icono de verificación cuando el checkbox está marcado */
+.checkbox-input:checked + .checkbox-indicator .checkbox-checkmark {
+  opacity: 1;
+}
+/* Estilo básico para el cuadro de selección */
+  .select-box {
+    width: 215px; /* Ancho del cuadro de selección */
+    padding: 8px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de la fuente */
+    appearance: none; /* Eliminar el estilo nativo del sistema operativo */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M7 10l5 5 5-5z" /></svg>'); /* Icono de flecha */
+    background-repeat: no-repeat;
+    background-position: right 0px center; /* Posición del icono de flecha */
+	padding-right: 15px;
+  }
+
+  /* Estilo cuando el cuadro de selección tiene el foco */
+  .select-box:focus {
+    outline: none; /* Eliminar el borde alrededor del cuadro de selección */
+    border-color: #007bff; /* Cambiar el color del borde cuando está enfocado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra alrededor del cuadro de selección */
+  }
+
+  /* Estilo para las opciones del cuadro de selección */
+  .select-box option {
+    background-color: #fff; /* Color de fondo de las opciones */
+    color: #333; /* Color del texto de las opciones */
+  }
+
+  /* Estilo para las opciones cuando se despliega el cuadro de selección */
+  .select-box option:checked {
+    background-color: #007bff; /* Color de fondo de la opción seleccionada */
+    color: #fff; /* Color del texto de la opción seleccionada */
+  }
