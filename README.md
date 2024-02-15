@@ -1,4 +1,4 @@
-# Consola de Administración para Docker
+# <img src="https://github.com/bernardosegura/CAD/blob/master/icon.svg" alt="Logo Docker" style="width: 40px; height: 40px;" /> Consola de Administración para Docker
 
 Este proyecto surge de la necesidad de simplificar la gestión de contenedores Docker y sus imágenes, sin incurrir en complicados procesos burocráticos que a menudo obstaculizan el control de los servidores en las organizaciones. Solo se requiere proporcionar un usuario con permisos de administración de Docker para ejecutar la aplicación y permitir una administración remota. Esto es útil tanto para entornos locales de desarrollo como para ambientes de desarrollo y pruebas.
 
