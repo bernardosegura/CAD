@@ -9,23 +9,23 @@ Confio en que esta herramienta sea de gran utilidad y que pueda maximizar su pot
 # Ejecucion Binaria
 Se puede ejecutar mediante el [binario](https://github.com/bernardosegura/CAD/releases/tag/v0.1-Beta) ya compilado y listo para usar tanto en Windows 💻 y Linux 🐧.
 
-__Windows 💻__
+💻 __Windows__
 ```cmd
 C:\Users\usuario\CAD>cad.exe [puerto de escucha http, si se omite por default es 3000] 
 ```
-__Linux 🐧__
+🐧 __Linux__
 ```bash
 usuario@equipo:~/CAD$cad [puerto de escucha http, si se omite por default es 3000] 
 ```
 
 # Ejecución de código fuente
 
-__Windows 💻__
+💻 __Windows__
 ```cmd
 C:\Users\usuario\CAD>npm install 
 C:\Users\usuario\CAD>node app.js [puerto de escucha http, si se omite por default es 3000] 
 ```
-__Linux 🐧__
+🐧 __Linux__
 ```bash
 usuario@equipo:~/CAD$npm install
 usuario@equipo:~/CAD$node app.js [puerto de escucha http, si se omite por default es 3000] 
