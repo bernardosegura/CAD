@@ -28,10 +28,11 @@ app.get('/app/:file?', (req, res) => {
 
 app.get('/app/js/:file', (req, res) => {
 	const file = (req.params.file)?req.params.file:'';
+	const os = require('os');
 
 	try {
 		const data = fs.readFileSync("js/"+file, 'utf8');
-		res.send(data);	
+		res.send(data.replace("<-HostName->",os.hostname()));	
 	} catch (err) {
 		res.status(500).send('{"estado":"-2","mensaje":"'+err.message+'"}');
 		//console.error(`Error al leer el archivo ${file}: ${err.message}`);

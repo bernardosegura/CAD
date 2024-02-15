@@ -1,4 +1,4 @@
-var nombreServidor = "LocalHost";
+var nombreServidor = window.location.hostname;
 var version = "Versión 0.1-Beta";
 
 var Ajax = function(metodo,url, params,callback,asyn=false)
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   document.getElementById('logo').title = "Consola de Administración para Docker " + version;
   document.getElementById('servername').innerHTML = '<b> ' + nombreServidor + "</b>";
-  
+  document.getElementById('servername').title = "Equipo: <-HostName->";
   intro(); 
 });
 
