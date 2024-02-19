@@ -30,3 +30,13 @@ C:\Users\usuario\CAD>node app.js [puerto de escucha http, si se omite por defaul
 usuario@equipo:~/CAD$npm install
 usuario@equipo:~/CAD$node app.js [puerto de escucha http, si se omite por default es 3000] 
 ```
+# Acceso a la Plataforma
+
+Desde tu navegador preferido ingresa a 
+
+__http://[server]:[puerto de escucha http, si se omite por default es 3000]/app/__
+
+ejemplo
+```
+http://localhost:3000/app/
+```
