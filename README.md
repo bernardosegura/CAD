@@ -7,7 +7,7 @@ Es importante tener en cuenta que esta herramienta no se recomienda para entorno
 Confio en que esta herramienta sea de gran utilidad y que pueda maximizar su potencial.
 
 # Ejecucion Binaria
-Se puede ejecutar mediante el [binario](https://github.com/bernardosegura/CAD/releases/tag/v0.1-Beta) ya compilado y listo para usar tanto en Windows 💻 y Linux 🐧.
+Se puede ejecutar mediante el [binario](https://github.com/bernardosegura/CAD/releases/tag/v0.2-Beta) ya compilado y listo para usar tanto en Windows 💻 y Linux 🐧.
 
 💻 __Windows__
 ```cmd
