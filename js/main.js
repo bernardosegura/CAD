@@ -1,5 +1,5 @@
 var nombreServidor = window.location.hostname;
-var version = "Versión 0.1-Beta";
+var version = "Versión 0.2-Beta";
 
 var Ajax = function(metodo,url, params,callback,asyn=false)
 {
@@ -92,8 +92,8 @@ function getImgs(){
 				let image = JSON.parse(data.images[i]);
 				let tr = "<tr id=\"fila_"+i+"\"><td style=\"text-align: center;\"><label class=\"checkbox-container\"><input onClick=\"fndFila(this)\" id=\"chk_"+i+"\" value=\""+ i +"\" type=\"checkbox\" class=\"checkbox-input chkbox checkimg\"><span class=\"checkbox-indicator\"><span class=\"checkbox-checkmark\"></span></span></label><input id=\"img_"+i+"\" value=\""+ image.Repository +":"+ image.Tag +"\" type=\"checkbox\" class=\"checkbox-input chkbox checkimg\"></td>";
 				//tr += "<td>"+image.Containers+"</td>";
-				tr += "<td>"+image.Repository+"</td>";
-				tr += "<td>"+image.Tag+"</td>";
+				tr += "<td>"+((image.Repository != "<none>")?image.Repository:"")+"</td>";
+				tr += "<td>"+((image.Tag != "<none>")?image.Tag:"")+"</td>";
 				tr += "<td>"+image.ID+"</td>";
 				tr += "<td>"+image.CreatedSince+"</td>";
 				tr += "<td>"+image.Size+"</td>";
@@ -173,7 +173,9 @@ function getPs(){
 			let html = "<option value='null'>Seleccione</option>";
 			for (let i = 0; i < (data.images.length - 1); i++) {
 				let image = JSON.parse(data.images[i]);
-				html += "<option value='"+image.Repository+":"+image.Tag+"'>"+image.Repository+":"+image.Tag+"</option>";
+				let tag = (image.Tag != "<none>")? ":"+image.Tag:"";
+				if(image.Repository != "<none>")
+					html += "<option value='"+image.Repository+tag+"'>"+image.Repository+tag+"</option>";
 			}
 			document.getElementById("cbx_imgs").innerHTML = html;
 		}
@@ -305,7 +307,9 @@ function eliminarImgs(origen){
 		document.getElementById("dialog-alert-mensaje").innerHTML = "Eliminando <b>" + document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[1].innerHTML+':'+document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[2].innerHTML + "</b>";
 		document.getElementById("btn-ok").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: relative; top: 2px;" width="24" height="24" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><path d="M10 50A40 40 0 0 0 90 50A40 46 0 0 1 10 50" fill="#000" stroke="none"><animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 51;360 50 51"></animateTransform></path></svg>';
 		openDialog('dialog-alert');
-		new Ajax("DELETE","/app/api/image/"+document.querySelectorAll(".checkimg:checked")[0].value,'{"name":"'+document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[1].innerHTML+'","tag":"'+document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[2].innerHTML+'"}',resp =>{
+		let image = (document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[1].innerHTML != "")?document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[1].innerHTML:document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[3].innerHTML;
+
+		new Ajax("DELETE","/app/api/image/"+document.querySelectorAll(".checkimg:checked")[0].value,'{"name":"'+image+'","tag":"'+document.querySelectorAll("#fila_"+document.querySelectorAll(".checkimg:checked")[0].value+" td")[2].innerHTML+'"}',resp =>{
 				let data = JSON.parse(resp);
 				if(data.estado != 0){
 					document.getElementById("dialog-alert-mensaje").innerHTML = data.mensaje;
@@ -477,7 +481,7 @@ function addPs(){
 			}else{*/
 					var panel_btns = document.getElementById("dialog-panel-botones").innerHTML;
 					document.getElementById("dialog-panel-botones").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position: relative; top: 2px;" width="24" height="24" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><path d="M10 50A40 40 0 0 0 90 50A40 46 0 0 1 10 50" fill="#000" stroke="none"><animateTransform attributeName="transform" type="rotate" dur="1s" repeatCount="indefinite" keyTimes="0;1" values="0 50 51;360 50 51"></animateTransform></path></svg>';
-					new Ajax("POST","/app/api/container",'{"image":"'+document.getElementById("cbx_imgs").value.replace(/\\/g, "\\\\") +'","name":"'+ document.getElementById("txt_ps_name").value+'","ports":"'+document.getElementById("txt_ps_ports").value+'","dirs":"'+document.getElementById("txt_ps_dirs").value.replace(/\\/g, "\\\\")+'","wdir":"'+document.getElementById("txt_ps_wdir").value.replace(/\\/g, "\\\\")+'"}',resp =>{
+					new Ajax("POST","/app/api/container",'{"image":"'+document.getElementById("cbx_imgs").value.replace(/\\/g, "\\\\") +'","name":"'+ document.getElementById("txt_ps_name").value+'","ports":"'+document.getElementById("txt_ps_ports").value+'","cmdext":"'+document.getElementById("txt_ps_cmdext").value +'","dirs":"'+document.getElementById("txt_ps_dirs").value.replace(/\\/g, "\\\\")+'","wdir":"'+document.getElementById("txt_ps_wdir").value.replace(/\\/g, "\\\\")+'"}',resp =>{
 					let data = JSON.parse(resp);
 					if(data.estado != 0){
 						document.getElementById("dialog-alert-mensaje").innerHTML = data.mensaje;

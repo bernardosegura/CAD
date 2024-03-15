@@ -163,7 +163,8 @@ app.post('/app/api/image', (req, res) => {
 
 app.delete('/app/api/image/:id', (req, res) => {
 	const { exec } = require('child_process');
-	exec("docker image rm -f " + req.body.name + ":" + req.body.tag, (error, stdout, stderr) => {
+	let image = (req.body.tag != '')?req.body.name + ":" + req.body.tag:req.body.name;
+	exec("docker image rm -f " + image, (error, stdout, stderr) => {
 	  if (stderr) {
 		res.send('{"estado":"-10","mensaje":"'+stderr.replace(/"/g,'\\"').replace(/\n/g, " ").trim()+'"}');
 		return;
@@ -177,7 +178,8 @@ app.post('/app/api/container', (req, res) => {
 	const name = (req.body.name != "")? " --name " + req.body.name: "";
 	const dirs = (req.body.dirs != "")? ' -v "' + req.body.dirs + '"': "";
 	const wdir = (req.body.wdir != "")? ' -w "' + req.body.wdir + '"': "";
-	exec("docker run -d" + name + " -p " + req.body.ports + dirs + wdir + " " + req.body.image, (error, stdout, stderr) => {
+	const cmdext = (req.body.cmdext != "")? + ' ' + req.body.cmdext + ' ' : "";
+	exec("docker run -d" + name + " -p " + req.body.ports + cmdext +dirs + wdir + " " + req.body.image, (error, stdout, stderr) => {
 	  if (stderr) {
 		res.send('{"estado":"-11","mensaje":"'+stderr.replace(/"/g,'\\"').replace(/\n/g, " ").trim()+'"}');
 		return;
